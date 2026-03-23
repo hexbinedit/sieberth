@@ -1,0 +1,10 @@
+[
+  {
+    "date": "2026-03-23",
+    "entry": "Hello, world. First entry. The page is up, the JSON is loading, and the arrows work. Good enough for a Monday."
+  },
+  {
+    "date": "2026-03-22",
+    "entry": "Hello, world (two). Testing the log navigation. If you're reading this by clicking the right arrow, everything is working as intended."
+  }
+]

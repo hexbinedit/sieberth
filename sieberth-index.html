@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Sieberth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:       #2a2d2e;
+    --surface:  #313537;
+    --surface2: #383c3e;
+    --border:   #42474a;
+    --border2:  #4e5457;
+    --ink:      #d8dbd8;
+    --ink2:     #9ba39e;
+    --ink3:     #606a65;
+    --green:    #6ab187;
+    --green2:   #4d9169;
+    --green3:   #3a7050;
+    --greendim: rgba(106,177,135,0.08);
+    --white:    #eaeee9;
+
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-id {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink2);
+  }
+
+  .nav-id span { color: var(--green); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  .nav-links a:hover { color: var(--green); transition: color 0.12s; }
+
+  @media (max-width: 560px) { .nav-links { display: none; } }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 2.5rem 2rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-headline {
+    font-family: var(--sans);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    display: none;
+  }
+
+  .hero-body {
+    font-size: 0.98rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink2);
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink);
+    background: var(--surface);
+    transition: border-color 0.12s, color 0.12s;
+  }
+
+  .tag:hover { border-color: var(--green3); color: var(--green); }
+
+  /* ── CONTENT WRAPPER ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '#';
+    color: var(--green);
+    font-size: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── LOG ── */
+  .log-section {
+    padding: 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .log-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green3);
+    border-radius: 3px;
+    padding: 1.6rem;
+  }
+
+  .log-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .log-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.1em;
+  }
+
+  .log-counter {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  .log-entry {
+    font-size: 0.96rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink2);
+    min-height: 4.5rem;
+    transition: opacity 0.2s;
+  }
+
+  .log-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink3);
+    font-size: 13px;
+    transition: all 0.12s;
+    font-family: var(--mono);
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    background: var(--green3);
+    border-color: var(--green3);
+    color: var(--white);
+  }
+
+  .nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    padding: 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .quote-card {
+    background: var(--greendim);
+    border: 1px solid var(--green3);
+    border-radius: 3px;
+    padding: 1.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-card::after {
+    content: '"';
+    font-family: var(--mono);
+    font-size: 7rem;
+    line-height: 1;
+    color: rgba(106,177,135,0.07);
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quote-text {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--ink);
+    min-height: 4rem;
+    margin-bottom: 1rem;
+    transition: opacity 0.25s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--green2);
+    text-transform: uppercase;
+    transition: opacity 0.25s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--green3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .shuffle-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--green3);
+    border-radius: 2px;
+    color: var(--green2);
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .shuffle-btn:hover {
+    background: var(--green3);
+    color: var(--white);
+  }
+
+  .quote-tally {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ELSEWHERE ── */
+  .links-section {
+    padding: 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .links-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.12s;
+  }
+
+  .link-item:hover {
+    background: var(--surface2);
+    border-color: var(--green3);
+  }
+
+  .link-item:hover .link-name { color: var(--green); }
+  .link-item:hover .link-arrow { color: var(--green); transform: translateX(3px); }
+
+  .link-left { display: flex; flex-direction: column; gap: 2px; }
+
+  .link-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.12s;
+    letter-spacing: 0.01em;
+  }
+
+  .link-desc {
+    font-size: 0.76rem;
+    font-family: var(--mono);
+    color: var(--ink3);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .link-arrow {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink3);
+    flex-shrink: 0;
+    margin-left: 1rem;
+    transition: color 0.12s, transform 0.12s;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.4rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-sig {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── COMMENT STRIPE ── */
+  .comment-stripe {
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.55rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--ink2);
+    letter-spacing: 0.05em;
+    width: 100%;
+  }
+
+  .comment-stripe span { color: var(--green); margin-right: 0.4em; }
+
+  /* ── FADE ── */
+  .fade-out { opacity: 0 !important; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .log-section,
+    .quote-section,
+    .links-section { padding: 2rem 1.25rem; }
+    footer { padding: 1.25rem; }
+    nav { padding: 1rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-id">sieberth<span>.net</span></div>
+  <ul class="nav-links">
+    <li><a href="#log">Log</a></li>
+    <li><a href="#links">Elsewhere</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="comment-stripe"><span>//</span> Paul Sieberth</div>
+
+<section class="hero">
+  <h1 class="hero-headline">Curious <em>by default.</em></h1>
+</section>
+
+<div class="comment-stripe"><span>//</span> always building something. always learning something else.</div>
+
+<section class="hero" style="padding-top: 2rem; border-bottom: 1px solid var(--border);">
+  <p class="hero-body">
+    I work in <strong>cybersecurity</strong> — hunting adversaries, building detections, and reading logs like they owe me something. I've spent years in the weeds of cloud infrastructure, threat intelligence, and detection engineering, and I still find it genuinely interesting. Outside of that I'm a <strong>photographer</strong> who shoots both film and digital, a <strong>home cook</strong> who takes recipes as loose suggestions, an occasional writer, and someone who tends to fall unreasonably deep into whatever subject crosses his path on a given week. I like making things — digital, physical, edible, or otherwise. I believe most problems are more interesting than they first appear, and that paying close attention is usually the whole job.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Photography</span>
+    <span class="tag">Cooking</span>
+    <span class="tag">Threat Hunting</span>
+    <span class="tag">Detection Eng.</span>
+    <span class="tag">Making Things</span>
+    <span class="tag">Film</span>
+    <span class="tag">Writing</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- LOG -->
+  <section class="log-section" id="log">
+    <div class="section-label">Log</div>
+    <div class="log-card">
+      <div class="log-top">
+        <span class="log-date" id="log-date">—</span>
+        <span class="log-counter" id="log-counter"></span>
+      </div>
+      <div class="log-entry" id="log-entry">Loading...</div>
+      <div class="log-footer">
+        <button class="nav-btn" id="btn-newer" title="Newer" aria-label="Newer">&#8592;</button>
+        <button class="nav-btn" id="btn-older" title="Older" aria-label="Older">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <div class="section-label">A thought</div>
+    <div class="quote-card">
+      <div class="quote-text" id="quote-text">Loading...</div>
+      <div class="quote-author" id="quote-author"></div>
+      <div class="quote-footer">
+        <button class="shuffle-btn" onclick="shuffleQuote()">Next quote</button>
+        <span class="quote-tally" id="quote-tally"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELSEWHERE -->
+  <section class="links-section" id="links">
+    <div class="section-label">Elsewhere</div>
+    <div class="links-row">
+      <a class="link-item" href="https://hexbinedit.io" target="_blank" rel="noopener">
+        <div class="link-left">
+          <span class="link-name">hexbinedit.io</span>
+          <span class="link-desc">// threat research &amp; detection engineering</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a class="link-item" href="https://github.com/hexbinedit" target="_blank" rel="noopener">
+        <div class="link-left">
+          <span class="link-name">GitHub</span>
+          <span class="link-desc">// hunt packages &amp; open source work</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <!-- Add more link-item blocks here -->
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER STRIPE + FOOTER -->
+<div class="comment-stripe"><span>//</span> no feed. no metrics. just a page.</div>
+<footer>
+  <div class="footer-sig">
+    <div class="footer-dot"></div>
+    paul sieberth / sieberth.net
+  </div>
+</footer>
+
+<script>
+  // === LOG ===
+  let updates = [], logIdx = 0;
+
+  function renderLog() {
+    if (!updates.length) return;
+    const u = updates[logIdx];
+    const el = document.getElementById('log-entry');
+    el.classList.add('fade-out');
+    setTimeout(() => {
+      document.getElementById('log-date').textContent = u.date;
+      el.textContent = u.entry;
+      document.getElementById('log-counter').textContent =
+        (logIdx + 1) + ' of ' + updates.length;
+      document.getElementById('btn-newer').disabled = logIdx === 0;
+      document.getElementById('btn-older').disabled = logIdx === updates.length - 1;
+      el.classList.remove('fade-out');
+    }, 200);
+  }
+
+  document.getElementById('btn-newer').addEventListener('click', () => {
+    if (logIdx > 0) { logIdx--; renderLog(); }
+  });
+  document.getElementById('btn-older').addEventListener('click', () => {
+    if (logIdx < updates.length - 1) { logIdx++; renderLog(); }
+  });
+
+  fetch('updates.json')
+    .then(r => r.json())
+    .then(data => {
+      updates = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+      logIdx = 0;
+      renderLog();
+    })
+    .catch(() => {
+      document.getElementById('log-entry').textContent = 'Nothing here yet.';
+      document.getElementById('log-date').textContent = '—';
+    });
+
+  // === QUOTES ===
+  let quotes = [], lastQ = -1;
+
+  function pickRandom() {
+    if (!quotes.length) return null;
+    let i;
+    do { i = Math.floor(Math.random() * quotes.length); }
+    while (quotes.length > 1 && i === lastQ);
+    lastQ = i;
+    return quotes[i];
+  }
+
+  function renderQuote(q, animate) {
+    const t = document.getElementById('quote-text');
+    const a = document.getElementById('quote-author');
+    if (animate) {
+      t.classList.add('fade-out');
+      a.classList.add('fade-out');
+      setTimeout(() => {
+        t.textContent = q.text;
+        a.textContent = '— ' + q.author;
+        t.classList.remove('fade-out');
+        a.classList.remove('fade-out');
+      }, 250);
+    } else {
+      t.textContent = q.text;
+      a.textContent = '— ' + q.author;
+    }
+  }
+
+  function shuffleQuote() {
+    const q = pickRandom();
+    if (q) renderQuote(q, true);
+  }
+
+  fetch('quotes.json')
+    .then(r => r.json())
+    .then(data => {
+      quotes = data;
+      document.getElementById('quote-tally').textContent = quotes.length + ' quotes';
+      const q = pickRandom();
+      if (q) renderQuote(q, false);
+    })
+    .catch(() => {
+      document.getElementById('quote-text').textContent = 'No quotes loaded.';
+    });
+</script>
+</body>
+</html>
