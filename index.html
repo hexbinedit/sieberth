@@ -18,10 +18,10 @@
     --ink:      #d8dbd8;
     --ink2:     #9ba39e;
     --ink3:     #606a65;
-    --green:    #6ab187;
-    --green2:   #4d9169;
-    --green3:   #3a7050;
-    --greendim: rgba(106,177,135,0.08);
+    --blue:     #6ab187;
+    --blue2:    #4d9169;
+    --blue3:    #3a7050;
+    --bluedim:  rgba(106,177,135,0.08);
     --white:    #eaeee9;
 
     --sans: 'IBM Plex Sans', system-ui, sans-serif;
@@ -64,7 +64,7 @@
     color: var(--ink2);
   }
 
-  .nav-id span { color: var(--green); }
+  .nav-id span { color: var(--blue); }
 
   .nav-links {
     display: flex;
@@ -78,7 +78,7 @@
     color: var(--ink3);
   }
 
-  .nav-links a:hover { color: var(--green); transition: color 0.12s; }
+  .nav-links a:hover { color: var(--blue); transition: color 0.12s; }
 
   @media (max-width: 560px) { .nav-links { display: none; } }
 
@@ -101,7 +101,7 @@
 
   .hero-headline em {
     font-style: normal;
-    color: var(--green);
+    color: var(--blue);
   }
 
   .hero-sub {
@@ -112,7 +112,7 @@
     font-size: 0.98rem;
     font-weight: 300;
     line-height: 1.85;
-    color: var(--ink2);
+    color: var(--white);
     max-width: 860px;
     margin-bottom: 2rem;
   }
@@ -142,7 +142,7 @@
     transition: border-color 0.12s, color 0.12s;
   }
 
-  .tag:hover { border-color: var(--green3); color: var(--green); }
+  .tag:hover { border-color: var(--blue3); color: var(--blue); }
 
   /* ── CONTENT WRAPPER ── */
   .content {
@@ -166,7 +166,7 @@
 
   .section-label::before {
     content: '#';
-    color: var(--green);
+    color: var(--blue);
     font-size: 12px;
   }
 
@@ -186,7 +186,7 @@
   .log-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--green3);
+    border-left: 3px solid var(--blue3);
     border-radius: 3px;
     padding: 1.6rem;
   }
@@ -204,7 +204,7 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 600;
-    color: var(--green);
+    color: var(--blue);
     letter-spacing: 0.1em;
   }
 
@@ -251,8 +251,8 @@
   }
 
   .nav-btn:hover:not(:disabled) {
-    background: var(--green3);
-    border-color: var(--green3);
+    background: var(--blue3);
+    border-color: var(--blue3);
     color: var(--white);
   }
 
@@ -265,8 +265,8 @@
   }
 
   .quote-card {
-    background: var(--greendim);
-    border: 1px solid var(--green3);
+    background: var(--bluedim);
+    border: 1px solid var(--blue3);
     border-radius: 3px;
     padding: 1.6rem;
     position: relative;
@@ -305,7 +305,7 @@
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.14em;
-    color: var(--green2);
+    color: var(--blue2);
     text-transform: uppercase;
     transition: opacity 0.25s;
     position: relative;
@@ -318,7 +318,7 @@
     justify-content: space-between;
     margin-top: 1.4rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--green3);
+    border-top: 1px solid var(--blue3);
     position: relative;
     z-index: 1;
   }
@@ -330,16 +330,16 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: none;
-    border: 1px solid var(--green3);
+    border: 1px solid var(--blue3);
     border-radius: 2px;
-    color: var(--green2);
+    color: var(--blue2);
     padding: 5px 12px;
     cursor: pointer;
     transition: all 0.12s;
   }
 
   .shuffle-btn:hover {
-    background: var(--green3);
+    background: var(--blue3);
     color: var(--white);
   }
 
@@ -377,11 +377,11 @@
 
   .link-item:hover {
     background: var(--surface2);
-    border-color: var(--green3);
+    border-color: var(--blue3);
   }
 
-  .link-item:hover .link-name { color: var(--green); }
-  .link-item:hover .link-arrow { color: var(--green); transform: translateX(3px); }
+  .link-item:hover .link-name { color: var(--blue); }
+  .link-item:hover .link-arrow { color: var(--blue); transform: translateX(3px); }
 
   .link-left { display: flex; flex-direction: column; gap: 2px; }
 
@@ -435,7 +435,7 @@
   .footer-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--green);
+    background: var(--blue);
     opacity: 0.5;
     flex-shrink: 0;
   }
@@ -461,7 +461,7 @@
     width: 100%;
   }
 
-  .comment-stripe span { color: var(--green); margin-right: 0.4em; }
+  .comment-stripe span { color: var(--blue); margin-right: 0.4em; }
 
   /* ── FADE ── */
   .fade-out { opacity: 0 !important; }
