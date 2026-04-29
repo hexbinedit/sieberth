@@ -457,6 +457,22 @@ footer {
 
 .comment-stripe span { color: var(--blue); margin-right: 0.4em; }
 
+/* ── LOG ENTRY LINK ── */
+.log-entry a {
+  color: var(--blue);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--blue3);
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.log-entry a:hover {
+  color: var(--white);
+  border-color: var(--blue);
+}
+
 /* ── FADE ── */
 .fade-out { opacity: 0 !important; }
 

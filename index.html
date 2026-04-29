@@ -143,7 +143,9 @@
     el.classList.add('fade-out');
     setTimeout(() => {
       document.getElementById('log-date').textContent = u.date;
-      el.textContent = u.entry;
+      el.innerHTML = u.link
+        ? `${u.entry} <a href="${u.link}" target="_blank" rel="noopener">→</a>`
+        : u.entry;
       document.getElementById('log-counter').textContent =
         (logIdx + 1) + ' of ' + updates.length;
       document.getElementById('btn-newer').disabled = logIdx === 0;
